@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My Budget">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffffff">
+<title>My Budget</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--card:#fff;--tx:#1e2235;--mu:#7a8099;--bd:#e6e8f3;--ac:#4f46e5;--in:#16a34a;--out:#e11d48;--am:#d97706;--bl:#2563eb;--sh:0 2px 8px rgba(60,70,140,.05);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark) and (max-width:0px){:root:not([data-theme="light"]){--bg:#0e1020;--card:#181b30;--tx:#eef0ff;--mu:#9aa0c0;--bd:#262a47;--ac:#818cf8;--in:#4ade80;--out:#fb7185;--am:#fbbf24;--bl:#60a5fa;--sh:0 4px 14px rgba(0,0,0,.35);color-scheme:dark}}
+:root[data-theme="none"]{--bg:#0e1020;--card:#181b30;--tx:#eef0ff;--mu:#9aa0c0;--bd:#262a47;--ac:#818cf8;--in:#4ade80;--out:#fb7185;--am:#fbbf24;--bl:#60a5fa;--sh:0 4px 14px rgba(0,0,0,.35);color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,-apple-system,Segoe UI,sans-serif;padding-bottom:84px}
+header{padding:16px 16px 4px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+h1{font-size:21px;margin:0;font-weight:800}h2{font-size:15px;margin:0 0 10px;font-weight:700}
+input,select,button{font:inherit;color:var(--tx);background:var(--bg);border:1.5px solid var(--bd);border-radius:12px;padding:10px 11px;min-width:0}
+input:focus,select:focus{outline:none;border-color:var(--ac)}
+button{cursor:pointer}button.p{background:var(--ac);color:#fff;border-color:var(--ac);font-weight:700}
+main{padding:6px 14px;max-width:640px;margin:auto}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px;margin:12px 0;box-shadow:var(--sh)}
+.hero{background:linear-gradient(135deg,rgba(99,102,241,.14),rgba(236,72,153,.08)),var(--card);color:var(--tx);padding:18px}
+.hero .k{color:var(--mu)}.hero input{background:transparent;border:0;border-bottom:1.5px dashed var(--bd);border-radius:0;color:var(--ac);font-size:32px;font-weight:800;padding:2px 0;width:100%}
+.hero input::placeholder{color:var(--mu);font-weight:500}
+.chips{display:flex;gap:8px;margin-top:12px}.chip{flex:1;background:var(--card);border-radius:12px;padding:8px 10px}.chip b{display:block;font-size:16px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g .c{margin:0}
+.r{display:flex;gap:8px;align-items:center}.r>*{flex:1}
+.k{font-size:12px;color:var(--mu)}.v{font-size:20px;font-weight:800}
+.in{color:var(--in)}.out{color:var(--out)}
+.s{border:0}.s.i{background:rgba(22,163,74,.08)}.s.o{background:rgba(225,29,72,.07)}.s.b{background:rgba(37,99,235,.08)}.s.d{background:rgba(217,119,6,.09)}
+.plan{border:1px solid var(--ac)}
+.ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:rgba(99,102,241,.09);flex:0 0 34px;font-size:17px}
+.bar{height:9px;background:var(--bd);border-radius:6px;overflow:hidden;margin:5px 0}.bar i{display:block;height:100%;border-radius:6px;background:var(--ac)}.bar i.w{background:var(--out)}
+.row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--bd);align-items:center}.row:first-child{border-top:0}
+.x{background:none;border:0;color:var(--mu);padding:4px 8px;flex:0}
+.tag{display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(79,70,229,.14);color:var(--ac)}
+nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;background:var(--card);border:1px solid var(--bd);border-radius:20px;box-shadow:0 4px 14px rgba(40,50,120,.10);padding:5px;max-width:616px;margin:auto}
+nav button{flex:1;border:0;border-radius:15px;background:none;padding:8px 2px;color:var(--mu);font-size:11px;font-weight:600}nav button span{display:block;font-size:19px}nav button.a{background:rgba(99,102,241,.14);color:var(--ac)}
+html,body{max-width:100%;overflow-x:hidden}
+body{font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:-.011em;background:#fff}
+header{padding:20px 16px 4px;gap:8px;flex-wrap:nowrap}header h1{flex:1;min-width:0;font-size:20px;font-weight:800;letter-spacing:-.03em;white-space:nowrap}
+#m{flex:0 0 auto!important;width:142px;font-size:14px;font-weight:600;background:#f3f4fb;border:0;border-radius:20px;padding:9px 12px}
+header button{flex:0 0 auto!important;background:#f3f4fb;border:0;border-radius:50%;width:40px;height:40px;padding:0!important}
+main{padding:4px 16px}
+.c{border:0;border-radius:26px;padding:18px;margin:14px 0;box-shadow:0 1px 2px rgba(20,24,60,.04),0 10px 30px rgba(70,80,160,.09)}
+.g .c{margin:0}
+h2{font-size:16px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.k{font-size:12.5px;font-weight:500}
+.v{font-size:23px;font-weight:800;letter-spacing:-.03em}
+.hero{background:linear-gradient(135deg,#eceeff 0%,#f6ecff 55%,#ffeaf3 100%);padding:22px 20px}
+.hero input{font-size:40px;font-weight:800;letter-spacing:-.04em;border:0;background:transparent;padding:0;margin-top:2px}
+.chip{background:#fff;border-radius:18px;padding:11px 13px;box-shadow:0 2px 8px rgba(70,80,160,.08)}.chip b{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.s{border-radius:24px;padding:16px}
+.s.i{background:#eaf8f0}.s.o{background:#fdecf0}.s.b{background:#ecf0fe}.s.d{background:#fdf3e4}
+.plan{border:1.5px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#6366f1,#ec4899) border-box}
+input,select,textarea{background:#f6f7fc;border:1.5px solid #eceef8;border-radius:15px;padding:12px 14px;font-weight:500}
+button{border-radius:15px;font-weight:600;border:1.5px solid #eceef8;background:#f6f7fc}
+button.p{background:linear-gradient(135deg,#6366f1,#8b5cf6);border:0;color:#fff;box-shadow:0 8px 18px rgba(99,102,241,.32)}
+.row{border-top:1px solid #f0f1f8;padding:11px 0}
+.ic{width:40px;height:40px;flex:0 0 40px;border-radius:14px;background:#eef0ff;font-size:19px}
+.bar{height:10px;border-radius:8px;background:#eef0fa}.bar i{border-radius:8px}
+nav{border:0;border-radius:28px;padding:6px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 12px 32px rgba(40,50,120,.2)}
+nav button{border-radius:22px;background:none;border:0;font-size:10.5px;padding:9px 2px}
+nav button.a{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;box-shadow:0 6px 14px rgba(99,102,241,.4)}
+#fab{position:fixed;right:18px;bottom:calc(92px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%!important;border:0;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-size:30px;line-height:1;padding:0;box-shadow:0 10px 24px rgba(99,102,241,.45);z-index:20}
+#sh{display:none;position:fixed;inset:0;background:rgba(20,24,60,.35);z-index:50;align-items:flex-end}
+.sheet{background:#fff;width:100%;max-height:88vh;overflow:auto;border-radius:28px 28px 0 0;padding:14px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.grab{width:42px;height:5px;border-radius:3px;background:#e1e4f2;margin:0 auto 12px}
+.alert{margin-top:10px;padding:10px 12px;border-radius:14px;font-weight:600;font-size:13.5px}.alert.o{background:#fdecf0;color:#be123c}.alert.g{background:#eaf8f0;color:#15803d}
+.fl{display:flex;gap:8px;margin-top:8px}.fl>*{flex:1}
+</style></head><body>
+<header><h1>💰 My Budget</h1><input type="month" id="m" style="flex:0"><button onclick="T='s';R()" style="flex:0;padding:8px 10px">⚙️</button></header>
+<main id="v"></main><div id="sh" onclick="if(event.target===this)closeQ()"></div><button id="fab" onclick="openQ()">+</button>
+<nav><button data-t="o"><span>📊</span>Overview</button><button data-t="t"><span>🧾</span>Activity</button><button data-t="d"><span>💳</span>Debts</button><button data-t="f"><span>🤝</span>Friends</button><button data-t="b"><span>🎯</span>Budgets</button></nav>
+<script>
+const EC=['Housing','Food','Market','Transport','Health','Bills','Leisure','Debt','Other'],IC=['Salary','Freelance','Repaid','Other'];
+const EM={Housing:'🏠',Food:'🍽️',Transport:'🚗',Health:'💊',Bills:'🧾',Leisure:'🎮',Debt:'💳',Other:'📦',Salary:'💼',Freelance:'💻',Market:'🛒',Repaid:'🤝'};
+const CL={Housing:'#6366f1',Food:'#f59e0b',Transport:'#0ea5e9',Health:'#10b981',Bills:'#8b5cf6',Leisure:'#ec4899',Debt:'#ef4444',Market:'#14b8a6',Other:'#64748b'};
+let UN=false,S={tx:[],debts:[],bud:{}},T='o',M=new Date().toISOString().slice(0,7);
+try{const r=localStorage.getItem('budget-v1');if(r)S=JSON.parse(r)}catch(e){}
+S.obl=S.obl||[];S.obl.forEach(o=>{if(o.day>31)o.day=0});S.fr=S.fr||[];S.chk=S.chk||{};S.incM=S.incM||{};S.accs=S.accs||[];S.xf=S.xf||[];S.fx=S.fx||{EUR:150,USD:135};
+const save=()=>{try{localStorage.setItem('budget-v1',JSON.stringify(S))}catch(e){}};
+const f=n=>Math.round(n).toLocaleString('en-US')+' DA',esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const id=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const $=i=>document.getElementById(i);
+const mt=()=>S.tx.filter(t=>t.date.slice(0,7)===M);
+const sum=(a,ty)=>a.filter(t=>t.type===ty).reduce((s,t)=>s+t.amount,0);
+const net=()=>sum(S.tx,'in')-sum(S.tx,'out'),cash=()=>accs().reduce((s,a)=>s+bal(a.id),0);
+const opts=a=>a.map(x=>`<option>${x}</option>`).join('');
+function R(){
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('a',b.dataset.t===T));
+ $('m').value=M;$('v').innerHTML=(S.pin&&!UN)?lock():S.start===undefined?welcome():{o:ov,t:tr,d:db,f:frT,s:sv,a:av,b:bu}[T]();document.querySelector('nav').style.display=(S.start===undefined||(S.pin&&!UN))?'none':'flex';$('fab').style.display=(S.start===undefined||(S.pin&&!UN)||T==='s')?'none':'block';
+ if(T==='t')cats('',ED&&ED.cat);
+}
+function ov(){
+ const a=mt(),i=sum(a,'in'),e=sum(a,'out'),bal=i-e,debt=S.debts.reduce((s,d)=>s+Math.max(0,d.total-d.paid),0),cs=cash();
+ const by={};a.filter(t=>t.type==='out').forEach(t=>by[t.cat]=(by[t.cat]||0)+t.amount);
+ return `<div class="c hero"><div class="k">Money I have now</div><input type="number" inputmode="decimal" placeholder="Tap to enter" value="${S.start!==undefined||S.tx.length?Math.round(cs):''}" onchange="setCash(this.value)">
+<div class="chips"><div class="chip"><span class="k">Debts to pay</span><b>${f(debt)}</b></div><div class="chip"><span class="k">Owed to me</span><b>${f(owed())}</b></div></div></div>
+${plan(a,i,e)}${accCard()}${goalCard()}${dueCard()}
+<div class="g"><div class="c s i"><div class="k">⬆️ Income</div><div class="v in">${f(i)}</div></div>
+<div class="c s o"><div class="k">⬇️ Expenses</div><div class="v out">${f(e)}</div></div>
+<div class="c s b"><div class="k">⚖️ Month balance</div><div class="v ${bal<0?'out':''}">${f(bal)}</div></div>
+<div class="c s d"><div class="k">💳 Debt left</div><div class="v">${f(debt)}</div></div></div>
+<div class="c"><h2>Spending by category</h2>${Object.keys(by).length?Object.entries(by).sort((x,y)=>y[1]-x[1]).map(([c,v])=>{const l=S.bud[c],p=l?Math.min(100,v/l*100):e?v/e*100:0;return `<div style="margin-bottom:8px"><div class="r"><span>${EM[c]} ${c}</span><span style="text-align:right">${f(v)}${l?' / '+f(l):''}</span></div><div class="bar"><i class="${l&&v>l?'w':''}" style="width:${p}%;${l&&v>l?'':'background:'+CL[c]}"></i></div></div>`}).join(''):'<div class="k">No expenses this month.</div>'}</div>${chart()}`;
+}
+function setCash(v){S.start=(parseFloat(v)||0)-(cash()-(S.start||0));save();R()}
+function welcome(){return `<div class="c hero" style="margin-top:40px"><div style="font-size:36px">👋</div><h2 style="font-size:20px;margin-top:6px">Welcome!</h2><div class="k">How much money do you have right now (cash + bank savings)? You can change it later from the Overview.</div><input id="w0" type="number" inputmode="decimal" placeholder="0 DA" style="margin:16px 0"><button class="p" style="width:100%" onclick="setCash($('w0').value)">Start</button></div>`}
+function tr(){
+ const a=mt().sort((x,y)=>y.date.localeCompare(x.date));
+ return `<div class="c"><h2>New transaction</h2><div class="r"><select id="ty" onchange="cats()"><option value="out">⬇️ Expense</option><option value="in">⬆️ Income</option></select><input id="am" type="number" inputmode="decimal" placeholder="Amount"></div>
+<div class="r" style="margin-top:8px"><select id="ct"></select><input id="dt" type="date" value="${new Date().toISOString().slice(0,10)}"></div>
+<div class="r" style="margin-top:8px"><input id="nt" placeholder="Note (optional)"><button class="p" onclick="addT()" style="flex:0">Add</button></div></div>
+<div class="c">${a.length?a.map(t=>`<div class="row"><div class="ic">${EM[t.cat]||'📦'}</div><div style="flex:1"><div>${esc(t.note)||t.cat}</div><div class="k">${t.date} · ${t.cat}</div></div><b class="${t.type}">${t.type==='in'?'+':'-'}${f(t.amount)}</b><button class="x" onclick="delT('${t.id}')">✕</button></div>`).join(''):'<div class="k">No transactions this month.</div>'}</div>`;
+}
+function cats(){const t=$('ty'),c=$('ct');if(t&&c)c.innerHTML=opts(t.value==='in'?IC:EC)}
+function addT(){const am=parseFloat($('am').value);if(!(am>0))return;S.tx.push({id:id(),type:$('ty').value,amount:am,cat:$('ct').value,date:$('dt').value||M+'-01',note:$('nt').value.trim()});save();R()}
+function delT(i){S.tx=S.tx.filter(t=>t.id!==i);save();R()}
+function dbOld(){
+ return `<div class="c"><h2>Add a debt</h2><div class="r"><input id="dn" placeholder="Name (e.g. Car loan)"><input id="dtot" type="number" inputmode="decimal" placeholder="Total"></div><div class="r" style="margin-top:8px"><input id="dmo" type="number" inputmode="decimal" placeholder="Monthly payment"><button class="p" onclick="addD()" style="flex:0">Add</button></div></div>
+${S.debts.map(d=>{const left=Math.max(0,d.total-d.paid),p=d.total?Math.min(100,d.paid/d.total*100):0,mo=d.monthly>0&&left>0?Math.ceil(left/d.monthly):0;return `<div class="c"><div class="r"><b>💳 ${esc(d.name)}</b><span style="text-align:right" class="out"><b>${f(left)}</b> left</span><button class="x" onclick="delD('${d.id}')">✕</button></div><div class="bar"><i style="width:${p}%;background:var(--in)"></i></div><div class="k">Paid ${f(d.paid)} of ${f(d.total)} (${Math.round(p)}%)${mo?` · about ${mo} months left at ${f(d.monthly)}/mo`:''}</div>${left>0?`<div class="r" style="margin-top:10px"><input id="p${d.id}" type="number" inputmode="decimal" placeholder="Payment" value="${d.monthly||''}"><button class="p" onclick="payD('${d.id}')">Pay</button></div>`:'<div class="in" style="margin-top:6px"><b>Paid off ✓</b></div>'}</div>`}).join('')||'<div class="k" style="text-align:center">No debts recorded.</div>'}`;
+}
+function addD(){const t=parseFloat($('dtot').value),n=$('dn').value.trim();if(!n||!(t>0))return;S.debts.push({id:id(),name:n,total:t,paid:0,monthly:parseFloat($('dmo').value)||0,due:$('ddue').value||''});save();R()}
+function delD(i){S.debts=S.debts.filter(d=>d.id!==i);save();R()}
+function payD(i){const d=S.debts.find(x=>x.id===i),a=Math.min(parseFloat($('p'+i).value),d.total-d.paid);if(!(a>0))return;d.paid+=a;S.tx.push({id:id(),type:'out',amount:a,cat:'Debt',did:i,date:new Date().toISOString().slice(0,10),note:'Payment: '+d.name});save();R()}
+function bu(){
+ const by={};mt().filter(t=>t.type==='out').forEach(t=>by[t.cat]=(by[t.cat]||0)+t.amount);
+ return `<div class="c"><h2>🎯 Plan</h2><div class="row"><span style="flex:1">Monthly savings goal</span><input type="number" inputmode="decimal" style="width:120px" placeholder="0" value="${S.goal||''}" onchange="setP('goal',this.value)"></div></div>
+<div class="c"><h2>🏁 Savings target</h2><div class="row"><span style="flex:1">Name</span><input style="width:150px" placeholder="Emergency fund" value="${esc((S.sg||{}).name)}" onchange="setSG('name',this.value)"></div><div class="row"><span style="flex:1">Target amount</span><input type="number" inputmode="decimal" style="width:150px" value="${(S.sg||{}).amt||''}" onchange="setSG('amt',this.value)"></div><div class="row"><span style="flex:1">Reach it by</span><input type="month" style="width:150px" value="${(S.sg||{}).date||''}" onchange="setSG('date',this.value)"></div></div><div class="c"><h2>Monthly limit per category</h2>${EC.map(c=>`<div class="row"><div class="ic">${EM[c]}</div><span style="flex:1">${c}<div class="k">Spent: ${f(by[c]||0)}</div></span><input type="number" inputmode="decimal" style="width:120px" placeholder="No limit" value="${S.bud[c]||''}" onchange="setB('${c}',this.value)"></div>`).join('')}</div>`;
+}
+function setB(c,v){S.bud[c]=parseFloat(v)||0;save()}
+const hash=s=>{let h=5381;for(const c of s)h=((h<<5)+h+c.charCodeAt(0))|0;return String(h)};
+const mkey=k=>{const [y,m]=M.split('-').map(Number),d=new Date(y,m-1-k,1);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')};
+const autoInc=()=>{const v=[1,2,3].map(k=>S.tx.filter(t=>t.type==='in'&&t.cat!=='Repaid'&&t.date.slice(0,7)===mkey(k)).reduce((s,t)=>s+t.amount,0)).filter(x=>x>0);return v.length?v.reduce((a,b)=>a+b,0)/v.length:0};
+const expInc=()=>S.incM[M]>0?S.incM[M]:(autoInc()||S.inc||0);
+function setI(v){S.incM[M]=parseFloat(v)||0;save();R()}
+let ED=null,Q={s:'',c:'',t:'',all:0};
+const accs=()=>[{id:'main',name:'Main'},...S.accs];
+const bal=id=>{const a=accs().find(x=>x.id===id);if(!a)return 0;const own=t=>(t.acc||'main')===id;return (id==='main'?(S.start||0):(a.start||0))+S.tx.filter(t=>own(t)&&t.type==='in').reduce((s,t)=>s+t.amount,0)-S.tx.filter(t=>own(t)&&t.type==='out').reduce((s,t)=>s+t.amount,0)+S.xf.filter(x=>x.to===id).reduce((s,x)=>s+x.amount,0)-S.xf.filter(x=>x.from===id).reduce((s,x)=>s+x.amount,0)};
+function form(p,t){t=t||{};const L=accs();return `<h2>${t.id?'Edit transaction':'New transaction'}</h2><div class="r"><select id="${p}ty" onchange="cats('${p}')"><option value="out">⬇️ Expense</option><option value="in" ${t.type==='in'?'selected':''}>⬆️ Income</option></select><input id="${p}am" type="number" inputmode="decimal" placeholder="Amount" value="${t.orig||t.amount||''}" oninput="cvp('${p}')"></div><div class="r" style="margin-top:8px"><select id="${p}cu" onchange="cvp('${p}')"><option>DA</option><option ${t.cur==='EUR'?'selected':''}>EUR</option><option ${t.cur==='USD'?'selected':''}>USD</option></select><select id="${p}ct"></select></div><div id="${p}cv" class="k" style="margin:6px 2px"></div><div class="r" style="margin-top:8px">${L.length>1?`<select id="${p}ac">${L.map(a=>`<option value="${a.id}" ${(t.acc||'main')===a.id?'selected':''}>${esc(a.name)}</option>`).join('')}</select>`:''}<input id="${p}dt" type="date" value="${t.date||new Date().toISOString().slice(0,10)}"></div><div class="r" style="margin-top:8px"><input id="${p}nt" placeholder="Note (optional)" value="${esc(t.note)}"></div><label class="r k" id="${p}rbl" style="margin:10px 0"><input type="checkbox" id="${p}rb" ${t.reimb?'checked':''} style="flex:0 0 22px;width:22px;height:22px;padding:0"><span>Someone will reimburse me (work, mission…)</span></label><div class="r"><button class="p" onclick="saveT('${p}')">${t.id?'Save':'Add'}</button>${t.id||p==='q'?'<button onclick="cancelT()">Cancel</button>':''}</div>`}
+function cats(p,sel){p=p||'';const t=$(p+'ty'),c=$(p+'ct');if(!t||!c)return;c.innerHTML=opts(t.value==='in'?IC:EC);if(sel)c.value=sel;$(p+'rbl').style.display=t.value==='in'?'none':'flex';cvp(p)}
+function cvp(p){p=p||'';const u=$(p+'cu'),e=$(p+'cv');if(!u||!e)return;const a=parseFloat($(p+'am').value)||0;e.textContent=u.value==='DA'||!a?'':'= '+f(a*(S.fx[u.value]||0))+' (rate '+(S.fx[u.value]||'not set')+')'}
+function saveT(p){p=p||'';const cu=$(p+'cu').value,raw=parseFloat($(p+'am').value),rate=cu==='DA'?1:(S.fx[cu]||0);if(!(raw>0)||!rate)return;const ty=$(p+'ty').value,o={type:ty,amount:Math.round(raw*rate*100)/100,cat:$(p+'ct').value,date:$(p+'dt').value||M+'-01',note:$(p+'nt').value.trim(),acc:$(p+'ac')?$(p+'ac').value:'main'};if(cu!=='DA'){o.cur=cu;o.orig=raw}if(ty==='out'&&$(p+'rb').checked){o.reimb=true;o.back=(ED&&ED.reimb&&p==='')?(ED.back||0):0}if(ED&&p===''){const x=ED;delete x.reimb;delete x.back;delete x.cur;delete x.orig;Object.assign(x,o)}else S.tx.push(Object.assign({id:id()},o));if(p==='')ED=null;save();closeQ();R()}
+function cancelT(){ED=null;closeQ();R()}
+function editT(i){ED=S.tx.find(t=>t.id===i);T='t';R();window.scrollTo(0,0)}
+function openQ(){$('sh').innerHTML='<div class="sheet"><div class="grab"></div>'+form('q',null)+'</div>';$('sh').style.display='flex';cats('q')}
+function closeQ(){const s=$('sh');if(s){s.style.display='none';s.innerHTML=''}}
+function tr(){return `<div class="c">${form('',ED)}</div><div class="c"><h2>History</h2><input id="qs" placeholder="🔍 Search note, category or amount" value="${esc(Q.s)}" oninput="Q.s=this.value;rl()"><div class="fl"><select onchange="Q.c=this.value;rl()"><option value="">All categories</option>${[...new Set([...EC,...IC])].map(c=>`<option ${Q.c===c?'selected':''}>${c}</option>`).join('')}</select><select onchange="Q.t=this.value;rl()"><option value="">Income and expenses</option><option value="in" ${Q.t==='in'?'selected':''}>Income only</option><option value="out" ${Q.t==='out'?'selected':''}>Expenses only</option></select></div><label class="r k" style="margin:8px 0"><input type="checkbox" ${Q.all?'checked':''} onchange="Q.all=this.checked?1:0;rl()" style="flex:0 0 20px;width:20px;height:20px;padding:0"><span>Search all months</span></label><div id="tl">${tl()}</div></div>`}
+function tl(){const q=Q.s.trim().toLowerCase(),a=(Q.all?S.tx:mt()).filter(t=>(!Q.c||t.cat===Q.c)&&(!Q.t||t.type===Q.t)&&(!q||(t.note||'').toLowerCase().includes(q)||t.cat.toLowerCase().includes(q)||String(t.amount).includes(q))).sort((x,y)=>y.date.localeCompare(x.date)),tot=a.reduce((s,t)=>s+(t.type==='in'?t.amount:-t.amount),0);return a.length?`<div class="k" style="margin-bottom:4px">${a.length} transaction${a.length>1?'s':''} · net ${f(tot)}</div>`+a.slice(0,200).map(t=>`<div class="row"><div class="ic">${EM[t.cat]||'📦'}</div><div style="flex:1;min-width:0"><div>${esc(t.note)||t.cat}${t.reimb?' <span class="tag">reimbursable</span>':''}</div><div class="k">${t.date} · ${t.cat}${t.acc&&t.acc!=='main'?' · '+esc((accs().find(x=>x.id===t.acc)||{}).name):''}${t.cur?' · '+t.orig+' '+t.cur:''}</div></div><b class="${t.type}">${t.type==='in'?'+':'-'}${f(t.amount)}</b><button class="x" onclick="editT('${t.id}')">✏️</button><button class="x" onclick="delT('${t.id}')">✕</button></div>`).join(''):'<div class="k">No transactions found.</div>'}
+function rl(){const e=$('tl');if(e)e.innerHTML=tl()}
+function accCard(){return `<div class="c" style="padding:14px 16px"><div class="r" style="margin-bottom:${S.accs.length?8:0}px"><h2 style="margin:0;flex:2">🏦 Accounts</h2><button onclick="T='a';R()" style="flex:1">${S.accs.length?'Manage':'+ Add'}</button></div>${S.accs.length?accs().map(a=>`<div class="row" style="padding:7px 0"><span style="flex:1">${esc(a.name)}</span><b>${f(bal(a.id))}</b></div>`).join(''):''}</div>`}
+function av(){const L=accs();return `<div class="c"><h2>🏦 My accounts</h2>${L.map(a=>`<div class="row"><div class="ic">${a.id==='main'?'👛':'🏦'}</div><div style="flex:1">${esc(a.name)}</div><b>${f(bal(a.id))}</b>${a.id!=='main'?`<button class="x" onclick="delA('${a.id}')">✕</button>`:''}</div>`).join('')}<div class="row"><b style="flex:1">Total</b><b>${f(cash())}</b></div></div><div class="c"><h2>↔️ Transfer</h2><div class="r"><select id="xf">${L.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('')}</select><select id="xt">${L.map((a,i)=>`<option value="${a.id}" ${i===1?'selected':''}>${esc(a.name)}</option>`).join('')}</select></div><div class="r" style="margin-top:8px"><input id="xa" type="number" inputmode="decimal" placeholder="Amount"><button class="p" onclick="moveX()">Move</button></div>${S.xf.slice(-5).reverse().map(x=>`<div class="row"><span class="k" style="flex:1">${x.date} · ${esc((L.find(a=>a.id===x.from)||{}).name)} → ${esc((L.find(a=>a.id===x.to)||{}).name)}</span><b>${f(x.amount)}</b><button class="x" onclick="delX('${x.id}')">✕</button></div>`).join('')}</div><div class="c"><h2>➕ Add an account</h2><div class="r"><input id="an" placeholder="Name (Bank, CCP, Baridimob…)"><input id="as" type="number" inputmode="decimal" placeholder="Money in it"></div><button class="p" style="width:100%;margin-top:8px" onclick="addA()">Add account</button><div class="k" style="margin-top:8px">The amount is taken from Main, so your total does not change.</div></div><button style="width:100%" onclick="T='o';R()">← Back</button>`}
+function addA(){const n=$('an').value.trim(),s=parseFloat($('as').value)||0;if(!n)return;S.accs.push({id:id(),name:n,start:s});S.start=(S.start||0)-s;save();R()}
+function delA(i){const a=S.accs.find(x=>x.id===i);if(!a)return;S.start=(S.start||0)+(a.start||0);S.tx.forEach(t=>{if(t.acc===i)t.acc='main'});S.xf=S.xf.filter(x=>x.from!==i&&x.to!==i);S.accs=S.accs.filter(x=>x.id!==i);save();R()}
+function moveX(){const a=parseFloat($('xa').value),fr=$('xf').value,to=$('xt').value;if(!(a>0)||fr===to)return;S.xf.push({id:id(),from:fr,to:to,amount:a,date:new Date().toISOString().slice(0,10)});save();R()}
+function delX(i){S.xf=S.xf.filter(x=>x.id!==i);save();R()}
+function fxCard(){return `<div class="c"><h2>💱 Exchange rates</h2><div class="k" style="margin-bottom:8px">How many DA for 1 unit. Set the rate you actually use and update it when it changes.</div>${['EUR','USD'].map(c=>`<div class="row"><span style="flex:1">1 ${c} =</span><input type="number" inputmode="decimal" style="width:120px" value="${S.fx[c]||''}" onchange="setFx('${c}',this.value)"><span class="k">DA</span></div>`).join('')}</div>`}
+function setFx(c,v){S.fx[c]=parseFloat(v)||0;save()}
+function sv(){return fxCard()+svOld()}
+function rbCard(){return '<div class="c"><h2>🧾 Reimbursable expenses</h2><div class="k">Tick "Someone will reimburse me" when you add an expense.</div></div>'+S.tx.filter(t=>t.reimb).map(t=>{const l=t.amount-(t.back||0),p=t.amount?(t.back||0)/t.amount*100:0;return `<div class="c"><div class="r"><b>${EM[t.cat]||'📦'} ${esc(t.note)||t.cat}</b><span style="text-align:right"><b>${f(l)}</b> to get back</span></div><div class="bar"><i style="width:${p}%;background:var(--in)"></i></div><div class="k">Spent ${f(t.amount)} on ${t.date} · returned ${f(t.back||0)}</div>${l>0?`<div class="r" style="margin-top:10px"><input id="b${t.id}" type="number" inputmode="decimal" value="${l}"></div><div class="r" style="margin-top:8px"><button class="p" onclick="recR('${t.id}',1)">Add to my balance</button><button onclick="recR('${t.id}',0)">Mark only</button></div>`:'<div class="in" style="margin-top:6px"><b>Fully reimbursed ✓</b></div>'}</div>`}).join('')}
+function recR(i,add){const t=S.tx.find(x=>x.id===i),a=Math.min(parseFloat($('b'+i).value),t.amount-(t.back||0));if(!(a>0))return;t.back=(t.back||0)+a;if(add)S.tx.push({id:id(),type:'in',amount:a,cat:'Repaid',date:new Date().toISOString().slice(0,10),note:'Reimbursed: '+(t.note||t.cat),acc:t.acc||'main'});save();R()}
+function frT(){return frOld()+rbCard()}
+const isPaid=o=>o.due?Object.values(S.chk).some(c=>c&&c[o.id]):!!(S.chk[M]&&S.chk[M][o.id]);
+const dd=s=>s.split('-').reverse().join('/');
+const dueTxt=o=>o.due?' · due '+dd(o.due):'';
+const late=(o,ck)=>{if(ck||!o.due)return '';const t=new Date().toISOString().slice(0,10);if(o.due<t)return ' · <b class="out">late</b>';const n=(new Date(o.due)-new Date(t))/864e5;return n<=3?' · <b style="color:var(--am)">due soon</b>':''};
+function setDue(i,v){const o=S.obl.find(x=>x.id===i);if(o){o.due=v;save();R()}}
+function dueCard(){const t=new Date().toISOString().slice(0,10),lim=new Date(Date.now()+3*864e5).toISOString().slice(0,10);const L=S.obl.filter(o=>o.due&&!isPaid(o)&&o.due<=lim).sort((a,b)=>a.due.localeCompare(b.due));if(!L.length)return '';return `<div class="c" style="border-color:var(--am)"><h2>⏰ Bills to pay</h2>${L.map(o=>`<div class="row"><span>${EM[o.cat]||''} ${esc(o.name)} <span class="k">· ${dd(o.due)}</span></span><b class="${o.due<t?'out':''}">${f(o.amount)}${o.due<t?' late':''}</b></div>`).join('')}</div>`}
+function setSG(k,v){S.sg=S.sg||{};S.sg[k]=k==='amt'?(parseFloat(v)||0):v;save();R()}
+const lateOld=(o,ck)=>{const t=new Date();if(ck||!o.day||t.toISOString().slice(0,7)!==M)return '';const d=t.getDate();return o.day<d?' · <b class="out">late</b>':o.day-d<=3?' · <b style="color:var(--am)">due soon</b>':''};
+function goalCard(){const g=S.sg;if(!g||!(g.amt>0))return '';const c=cash(),p=Math.max(0,Math.min(100,c/g.amt*100)),n=g.date?mTo(g.date):0,need=n?Math.max(0,g.amt-c)/n:0;return `<div class="c"><h2>🏁 ${esc(g.name)||'Savings target'}</h2><div class="r"><b>${f(c)}</b><span class="k" style="text-align:right">of ${f(g.amt)} (${Math.round(p)}%)</span></div><div class="bar"><i style="width:${p}%;background:var(--in)"></i></div>${c>=g.amt?'<div class="in"><b>Target reached ✓</b></div>':n?`<div class="k">Save about <b>${f(need)}</b> per month to reach it in ${n} month${n>1?'s':''}</div>`:''}</div>`}
+function dueCardOld(){const t=new Date(),d=t.getDate();if(t.toISOString().slice(0,7)!==M)return '';const L=S.obl.filter(o=>o.day&&!(S.chk[M]&&S.chk[M][o.id])&&o.day-d<=3);if(!L.length)return '';return `<div class="c" style="border-color:var(--am)"><h2>⏰ Bills to pay</h2>${L.map(o=>`<div class="row"><span>${EM[o.cat]||''} ${esc(o.name)} <span class="k">· day ${o.day}</span></span><b class="${o.day<d?'out':''}">${f(o.amount)}${o.day<d?' late':''}</b></div>`).join('')}</div>`}
+function chart(){const ms=[];for(let k=5;k>=0;k--){const key=mkey(k),a=S.tx.filter(t=>t.date.slice(0,7)===key);ms.push({l:new Date(key+'-01T12:00:00').toLocaleString('en',{month:'short'}),i:a.filter(t=>t.type==='in'&&t.cat!=='Repaid').reduce((s,t)=>s+t.amount,0),o:sum(a,'out')})}const mx=Math.max(1,...ms.flatMap(x=>[x.i,x.o]));return `<div class="c"><h2>📈 Last 6 months</h2><div style="display:flex;gap:6px">${ms.map(x=>`<div style="flex:1;text-align:center"><div style="display:flex;gap:3px;align-items:flex-end;height:90px;justify-content:center"><i style="width:38%;height:${x.i/mx*100}%;background:var(--in);border-radius:4px 4px 0 0"></i><i style="width:38%;height:${x.o/mx*100}%;background:var(--out);border-radius:4px 4px 0 0"></i></div><span class="k">${x.l}</span></div>`).join('')}</div><div class="k" style="margin-top:6px"><span class="in">■</span> Income &nbsp; <span class="out">■</span> Expenses</div></div>`}
+const ta='width:100%;font:12px monospace;border:1.5px solid var(--bd);border-radius:12px;padding:10px;background:var(--bg);color:var(--tx)';
+function svOld(){return `<div class="c"><h2>🔒 PIN lock</h2><div class="k" style="margin-bottom:8px">${S.pin?'PIN is on.':'Ask for a PIN when the app opens.'} A simple privacy lock, not bank-grade security.</div><div class="r"><input id="pn" type="password" inputmode="numeric" maxlength="8" placeholder="New PIN (4-8 digits)"><button class="p" onclick="setPin()" style="flex:0 0 auto">Save</button></div>${S.pin?'<button style="width:100%;margin-top:8px" onclick="offPin()">Turn off PIN</button>':''}</div>
+<div class="c"><h2>💾 Backup</h2><div class="k" style="margin-bottom:8px">Copy this text and keep it safe (notes, email to yourself).</div><textarea id="bk" readonly rows="4" style="${ta}">${esc(JSON.stringify(S))}</textarea><button class="p" style="width:100%;margin-top:8px" onclick="copyBk()">Select and copy</button></div>
+<div class="c"><h2>♻️ Restore</h2><textarea id="rs" rows="4" placeholder="Paste your backup here" style="${ta}"></textarea><button style="width:100%;margin-top:8px" onclick="restore()">Restore data</button></div>
+<button style="width:100%" onclick="T='o';R()">← Back</button>`}
+function setPin(){const v=$('pn').value.trim();if(!/^\d{4,8}$/.test(v))return;S.pin=hash(v);save();UN=true;R()}
+function offPin(){S.pin='';save();R()}
+function lock(){return `<div class="c hero" style="margin-top:60px;text-align:center"><div style="font-size:34px">🔒</div><h2>Enter your PIN</h2><input id="lk" type="password" inputmode="numeric" maxlength="8" style="text-align:center;margin:14px 0;font-size:24px"><button class="p" style="width:100%" onclick="unlock()">Unlock</button><div id="le" class="out" style="margin-top:8px"></div></div>`}
+function unlock(){if(hash($('lk').value)===S.pin){UN=true;R()}else $('le').textContent='Wrong PIN'}
+function copyBk(){const t=$('bk');t.select();try{navigator.clipboard.writeText(t.value)}catch(e){try{document.execCommand('copy')}catch(_){}}}
+function restore(){try{const o=JSON.parse($('rs').value);if(!o||!Array.isArray(o.tx))throw 0;S=Object.assign({tx:[],debts:[],bud:{},obl:[],fr:[],chk:{},incM:{},accs:[],xf:[],fx:{EUR:150,USD:135}},o);save();UN=true;T='o';R()}catch(e){$('rs').value='';$('rs').placeholder='Invalid backup text'}}
+const lf=d=>Math.max(0,d.total-d.paid);
+const mTo=u=>{const n=new Date(),[y,m]=u.split('-').map(Number);return Math.max(1,(y-n.getFullYear())*12+(m-1-n.getMonth())+1)};
+const mp=d=>d.monthly>0?d.monthly:(d.due?Math.ceil(lf(d)/mTo(d.due)):0);
+const oblDue=()=>S.obl.filter(o=>!isPaid(o)&&(!o.due||o.due.slice(0,7)<=M)).reduce((s,o)=>s+o.amount,0);
+const owed=()=>S.fr.reduce((s,x)=>s+x.amount-x.back,0)+S.tx.filter(t=>t.reimb).reduce((s,t)=>s+t.amount-(t.back||0),0);
+function db(){
+ const ds=S.debts.slice().sort((a,b)=>lf(a)-lf(b)).filter(d=>lf(d)>0),tot=ds.reduce((s,d)=>s+mp(d),0);
+ const fin=d=>{const m=mp(d);if(!m)return '';const n=Math.ceil(lf(d)/m),x=new Date();x.setMonth(x.getMonth()+n);return x.toLocaleString('en',{month:'short',year:'numeric'})};
+ return `<div class="c"><h2>Add a debt</h2><div class="r"><input id="dn" placeholder="Name (e.g. Car loan)"><input id="dtot" type="number" inputmode="decimal" placeholder="Total"></div><div class="r" style="margin-top:8px"><input id="dmo" type="number" inputmode="decimal" placeholder="Monthly payment"><input id="ddue" type="month" title="Pay off by"></div><div class="k" style="margin:6px 0">Enter a monthly payment, or a target month (right) and the app calculates the payment.</div><button class="p" style="width:100%" onclick="addD()">Add debt</button></div>
+${ds.length?`<div class="c plan"><h2>🗺️ Debt payoff plan</h2><div class="k" style="margin-bottom:6px">Clear the smallest debt first, keep the regular amount on the others.</div>${ds.map((d,i)=>`<div class="row"><div class="ic">${i+1}</div><div style="flex:1"><b>${esc(d.name)}</b><div class="k">${mp(d)?f(mp(d))+'/month · clear by '+fin(d):'Set a monthly amount or target month'}</div></div><b class="out">${f(lf(d))}</b></div>`).join('')}<div class="k" style="margin-top:8px">Total to set aside each month: <b>${f(tot)}</b></div></div>`:''}
+${S.debts.map(d=>{const l=lf(d),p=d.total?Math.min(100,d.paid/d.total*100):0;return `<div class="c"><div class="r"><b>💳 ${esc(d.name)}</b><span style="text-align:right" class="out"><b>${f(l)}</b> left</span><button class="x" onclick="delD('${d.id}')">✕</button></div><div class="bar"><i style="width:${p}%;background:var(--in)"></i></div><div class="k">Paid ${f(d.paid)} of ${f(d.total)} (${Math.round(p)}%) · taken from your balance only when you pay</div>${l>0?`<div class="r" style="margin-top:10px"><input id="p${d.id}" type="number" inputmode="decimal" placeholder="Payment" value="${mp(d)||''}"><button class="p" onclick="payD('${d.id}')">Pay</button></div>`:'<div class="in" style="margin-top:6px"><b>Paid off ✓</b></div>'}</div>`}).join('')}
+<div class="c"><h2>🏠 Monthly bills</h2><div class="k" style="margin-bottom:8px">Rent, market… not taken from your balance until you check them as paid.</div>${S.obl.map(o=>{const ck=isPaid(o);return `<div class="row"><input type="checkbox" ${ck?'checked':''} onchange="togO('${o.id}')" style="width:24px;height:24px;flex:0 0 24px;padding:0"><div style="flex:1"><div style="${ck?'text-decoration:line-through;color:var(--mu)':''}">${EM[o.cat]||''} ${esc(o.name)}</div><div class="k">${o.cat}${dueTxt(o)}${late(o,ck)}</div><input type="date" value="${o.due||''}" onchange="setDue('${o.id}',this.value)" style="margin-top:4px;padding:4px 8px;font-size:12px;width:150px"></div><b>${f(o.amount)}</b><button class="x" onclick="delO('${o.id}')">✕</button></div>`}).join('')||'<div class="k">No bills yet.</div>'}<div class="r" style="margin-top:10px"><input id="on" placeholder="Name (e.g. Rent)"><input id="oa" type="number" inputmode="decimal" placeholder="Amount"></div><div class="r" style="margin-top:8px"><select id="oc"><option>Housing</option><option>Market</option><option>Bills</option><option>Other</option></select><label class="k" style="flex:1.5">Due date (optional)<input id="od" type="date" style="width:100%"></label><button class="p" onclick="addO()" style="flex:0 0 auto">Add bill</button></div></div>`;
+}
+function addO(){const n=$('on').value.trim(),a=parseFloat($('oa').value);if(!n||!(a>0))return;S.obl.push({id:id(),name:n,amount:a,cat:$('oc').value,due:$('od').value||''});save();R()}
+function delO(i){S.obl=S.obl.filter(o=>o.id!==i);save();R()}
+function togO(oid){const o=S.obl.find(x=>x.id===oid),mk=(o.due&&Object.keys(S.chk).find(k=>S.chk[k]&&S.chk[k][oid]))||M,c=S.chk[mk]=S.chk[mk]||{};
+ if(c[oid]){S.tx=S.tx.filter(t=>t.id!==c[oid]);delete c[oid]}
+ else{const t=id(),today=new Date().toISOString().slice(0,10);S.tx.push({id:t,type:'out',amount:o.amount,cat:o.cat,date:today.slice(0,7)===M?today:M+'-01',note:o.name,bill:1});c[oid]=t}
+ save();R()}
+function frOld(){
+ return `<div class="c"><h2>🤝 Money I lent</h2><div class="r"><input id="fn" placeholder="Friend name"><input id="fa" type="number" inputmode="decimal" placeholder="Amount"></div><label class="r k" style="margin:10px 0"><input type="checkbox" id="fd" style="flex:0 0 22px;padding:0;width:22px;height:22px"><span>Also take it out of my balance now (leave unchecked if my balance already excludes it)</span></label><button class="p" style="width:100%" onclick="addF()">Add</button></div>
+<div class="c s i"><div class="k">Total owed to me</div><div class="v">${f(owed())}</div></div>
+${S.fr.map(x=>{const l=x.amount-x.back,p=x.amount?x.back/x.amount*100:0;return `<div class="c"><div class="r"><b>🙋 ${esc(x.name)}</b><span style="text-align:right"><b>${f(l)}</b> owed</span><button class="x" onclick="delF('${x.id}')">✕</button></div><div class="bar"><i style="width:${p}%;background:var(--in)"></i></div><div class="k">Lent ${f(x.amount)} · returned ${f(x.back)}</div>${l>0?`<div class="r" style="margin-top:10px"><input id="r${x.id}" type="number" inputmode="decimal" placeholder="Amount returned" value="${l}"></div><div class="r" style="margin-top:8px"><button class="p" onclick="recF('${x.id}',1)">Add to my balance</button><button onclick="recF('${x.id}',0)">Mark only</button></div>`:'<div class="in" style="margin-top:6px"><b>Fully returned ✓</b></div>'}</div>`}).join('')}`;
+}
+function addF(){const n=$('fn').value.trim(),a=parseFloat($('fa').value);if(!n||!(a>0))return;S.fr.push({id:id(),name:n,amount:a,back:0});if($('fd').checked)S.tx.push({id:id(),type:'out',amount:a,cat:'Other',date:new Date().toISOString().slice(0,10),note:'Lent to '+n,bill:1});save();R()}
+function delF(i){S.fr=S.fr.filter(x=>x.id!==i);save();R()}
+function recF(i,add){const x=S.fr.find(z=>z.id===i),a=Math.min(parseFloat($('r'+i).value),x.amount-x.back);if(!(a>0))return;x.back+=a;if(add)S.tx.push({id:id(),type:'in',amount:a,cat:'Repaid',date:new Date().toISOString().slice(0,10),note:'Repaid: '+x.name});save();R()}
+function setP(k,v){S[k]=parseFloat(v)||0;save();R()}
+function plan(a,i,e){
+ const now=new Date(),today=now.toISOString().slice(0,10),cur=today.slice(0,7)===M,[y,mo]=M.split('-').map(Number),dim=new Date(y,mo,0).getDate(),left=cur?dim-now.getDate()+1:0;
+ const inc=cash(),goal=S.goal||0;
+ if(!inc&&!goal)return '<div class="c plan"><h2>Daily spending plan</h2><div class="k">Set your expected income and savings goal in the Budgets tab.</div></div>';
+ if(!cur){const sv=i-e;return `<div class="c plan"><h2>Savings goal</h2><div class="v ${sv>=goal?'in':'out'}">${f(sv)} saved</div><div class="k">Goal ${f(goal)} · ${sv>=goal?'reached ✓':'missed by '+f(goal-sv)}</div></div>`}
+ const pm=d=>a.filter(t=>t.did===d.id).reduce((s,t)=>s+t.amount,0);
+ const needD=S.debts.reduce((s,d)=>s+(lf(d)>0?Math.max(0,Math.min(mp(d),lf(d))-pm(d)):0),0),needB=oblDue();
+ const paidD=a.filter(t=>t.type==='out'&&t.cat==='Debt').reduce((s,t)=>s+t.amount,0);
+ const spent=e-paidD,avail=inc-goal-needD-needB;
+ const td=a.filter(t=>t.type==='out'&&t.cat!=='Debt'&&!t.bill&&t.date===today).reduce((s,t)=>s+t.amount,0);
+ const day=(avail+td)/left,rem=day-td;const st=td>0?(rem<0?`<div class="alert o">⚠️ Over today's limit by ${f(-rem)}</div>`:`<div class="alert g">✅ On track: ${f(rem)} left today</div>`):'';
+ return `<div class="c plan"><h2>📅 Daily spending plan</h2><div class="g"><div><div class="k">Safe to spend per day</div><div class="v ${day<0?'out':'in'}">${f(day)}</div></div><div><div class="k">Left for today</div><div class="v ${rem<0?'out':''}">${f(rem)}</div></div></div>${st}<div style="margin-top:10px;font-size:13px">${[['Money I have now',inc],['Savings goal',-goal],['Debt plan still to pay',-needD],['Bills still unpaid',-needB]].map(r=>`<div class="r" style="padding:2px 0"><span class="k" style="flex:3">${r[0]}</span><span style="flex:2;text-align:right" class="${r[1]<0?'out':'in'}">${r[1]<0?'−':''}${f(Math.abs(r[1]))}</span></div>`).join('')}<div class="r" style="border-top:1px solid var(--bd);padding-top:4px"><b style="flex:3">Available for ${left} day${left>1?'s':''}</b><b style="flex:2;text-align:right">${f(avail)}</b></div></div>${avail<0?`<div class="out" style="margin-top:6px"><b>Over plan by ${f(-avail)}:</b> cut spending or lower the goal.</div>`:''}</div>`;
+}
+$('m').onchange=()=>{M=$('m').value||M;R()};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{T=b.dataset.t;R()});
+R();
+</script><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
+</body></html>
